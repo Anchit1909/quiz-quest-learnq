@@ -8,8 +8,12 @@ import {
 } from "@/components/ui/card";
 import { Button } from "../ui/button";
 import { ChevronRight, ChevronLeft } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useResultStore } from "@/hooks/useStore";
 
 const Quiz = ({ questions }: any) => {
+  const router = useRouter();
+  const { setQuizResult } = useResultStore();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
   const [answers, setAnswers] = useState<
@@ -49,14 +53,37 @@ const Quiz = ({ questions }: any) => {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     const finalAnswers = answers.map((answer) => ({
       questionId: answer.questionId,
       selectedOption:
         answer.selectedOption !== null ? answer.selectedOption : 0,
     }));
     console.log("Quiz submitted with answers: ", finalAnswers);
-    // Here you can add the logic to submit the answers to the backend
+
+    try {
+      const response = await fetch(
+        "http://localhost:5000/quiz/submit-answers",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ answers: finalAnswers }),
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Failed to submit answers");
+      }
+
+      const result = await response.json();
+      console.log("Submission result:", result);
+      setQuizResult(result);
+      router.push("/result");
+    } catch (error) {
+      console.error("Error submitting answers:", error);
+    }
   };
 
   const currentQuestion = questions[currentQuestionIndex];
