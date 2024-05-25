@@ -26,20 +26,31 @@ class QuizService {
       const questions = await QuestionModel.find({
         _id: { $in: answers.map((ans) => ans.questionId) },
       });
+
       let totalScore = 0;
+
       const scoreDetails = questions.map((question, index) => {
+        const userOption = `option${answers[index].selectedOption}`;
+        const userAnswer = (question as any)[userOption];
+        const correctOption = `option${question.correctOption}`;
+        const correctAnswer = (question as any)[correctOption];
+
         const isCorrect =
-          question.correctOption === answers[index].selectedOption;
+          userAnswer &&
+          answers[index].selectedOption === question.correctOption;
+
         const score = isCorrect ? question.marksAllocated : 0;
         totalScore += score;
+
         return {
           question: question.question,
-          userAnswer: answers[index].selectedOption,
-          correctAnswer: question.correctOption,
+          userAnswer,
+          correctAnswer,
           isCorrect,
           score,
         };
       });
+
       return { totalScore, scoreDetails };
     } catch (error: any) {
       throw new Error("Error calculating score: " + error.message);
