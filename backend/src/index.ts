@@ -2,6 +2,7 @@ import express, { Express, Request, Response } from "express";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import cors from "cors";
+import * as quizRoutes from "./routes/quizRoutes";
 
 dotenv.config();
 
@@ -14,11 +15,12 @@ mongoose
   });
 
 app.use(cors());
-const port = process.env.PORT || 3001;
+app.use(express.json());
+const port = process.env.PORT || 5000;
 
-app.get("/", (req: Request, res: Response) => { 
+app.use("/quiz", quizRoutes.router);
+app.get("/", (req: Request, res: Response) => {
   res.send("Express + TypeScript Server");
-  console.log("hey");
 });
 
 app.listen(port, () => {
