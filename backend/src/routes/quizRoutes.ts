@@ -6,6 +6,6 @@ dotenv.config();
 
 const router = express.Router();
 router.get("/questions/", quiz.getQuestions);
-// router.post("/submit-answers", quiz.submitAnswers);
+router.post("/submit-answers", quiz.submitAnswers);
 
 export { router };
