@@ -7,7 +7,6 @@ import React from "react";
 
 const Result = () => {
   const { quizResult } = useResultStore();
-  console.log(quizResult);
   return (
     <>
       <div className="p-8 mx-auto max-w-7xl">

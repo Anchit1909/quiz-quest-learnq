@@ -4,7 +4,7 @@ import { QuizService } from "../services/QuizService";
 const quizService = new QuizService();
 
 const getQuestions = async (req: Request, res: Response) => {
-  const difficulty: string = (req.query.difficulty as string) || "any";
+  const difficulty: string = (req.query.difficulty as string) || "Any";
   try {
     const questions = await quizService.getRandomQuestions(difficulty);
     res.json(questions);

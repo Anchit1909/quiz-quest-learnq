@@ -4,7 +4,7 @@ class QuizService {
   async getRandomQuestions(difficulty: string, count: number = 10) {
     try {
       let query = {};
-      if (difficulty !== "any") {
+      if (difficulty !== "Any") {
         query = { difficultyLevel: difficulty };
       }
 

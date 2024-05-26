@@ -20,7 +20,7 @@ function Header() {
               className="flex z-40 font-semibold items-center gap-2"
             >
               <div className={cn(clash.className, "text-xl space-x-1")}>
-                <span>Anchit Sinha</span>
+                <span>QuizQuest</span>
                 <span className="text-primary">.</span>
               </div>
             </Link>
