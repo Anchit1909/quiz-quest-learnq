@@ -1,5 +1,6 @@
 "use client";
 
+import Footer from "@/components/Navigation/Footer";
 import QuestionsList from "@/components/ResultPage/QuestionsList";
 import ResultsCard from "@/components/ResultPage/ResultsCard";
 import { useResultStore } from "@/hooks/useStore";
@@ -21,6 +22,7 @@ const Result = () => {
           />
         </div>
         <QuestionsList questions={quizResult.scoreDetails} />
+        <Footer />
       </div>
     </>
   );

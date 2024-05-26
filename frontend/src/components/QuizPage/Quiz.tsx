@@ -10,8 +10,26 @@ import { Button } from "../ui/button";
 import { ChevronRight, ChevronLeft } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useResultStore } from "@/hooks/useStore";
+import "katex/dist/katex.min.css";
+import { detectLatex } from "@/utils/DetectLatex";
 
-const Quiz = ({ questions }: any) => {
+interface Question {
+  _id: string;
+  question: string;
+  option1: string;
+  option2: string;
+  option3: string;
+  option4: string;
+  correctOption: number;
+  marksAllocated: number;
+  difficultyLevel: string;
+}
+
+interface QuizProps {
+  questions: Question[];
+}
+
+const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const router = useRouter();
   const { setQuizResult } = useResultStore();
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -19,7 +37,7 @@ const Quiz = ({ questions }: any) => {
   const [answers, setAnswers] = useState<
     { questionId: string; selectedOption: number | null }[]
   >(
-    questions.map((question: any) => ({
+    questions.map((question: Question) => ({
       questionId: question._id,
       selectedOption: null,
     }))
@@ -97,7 +115,7 @@ const Quiz = ({ questions }: any) => {
             <div className="text-base text-slate-400">{questions.length}</div>
           </CardTitle>
           <CardDescription className="flex-grow text-lg">
-            {currentQuestion.question}
+            {detectLatex(currentQuestion.question)}
           </CardDescription>
         </CardHeader>
       </Card>
@@ -112,7 +130,7 @@ const Quiz = ({ questions }: any) => {
             <div className="flex items-center justify-start">
               <div className="p-2 px-3 mr-5 border rounded-md">{option}</div>
               <div className="text-start">
-                {currentQuestion[`option${option}`]}
+                {detectLatex(currentQuestion[`option${option}`])}
               </div>
             </div>
           </Button>

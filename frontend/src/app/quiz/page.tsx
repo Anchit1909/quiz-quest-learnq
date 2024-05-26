@@ -6,7 +6,6 @@ const page = async ({
   searchParams?: { difficulty?: string };
 }) => {
   const difficulty = searchParams?.difficulty;
-  console.log(difficulty);
   const res = await fetch(
     `http://localhost:5000/quiz/questions?difficulty=${difficulty}`
   );

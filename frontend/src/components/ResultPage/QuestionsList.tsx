@@ -8,12 +8,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { detectLatex } from "@/utils/DetectLatex";
 
 type Props = {
   questions: {
     question: string;
-    userAnswer: number;
-    correctAnswer: number;
+    userAnswer: string;
+    correctAnswer: string;
     isCorrect: boolean;
     score: number;
   }[];
@@ -21,7 +22,7 @@ type Props = {
 
 const QuestionsList = ({ questions }: Props) => {
   return (
-    <Table className="mt-4">
+    <Table className="mt-4 mb-8">
       <TableCaption>End of list.</TableCaption>
       <TableHeader>
         <TableRow>
