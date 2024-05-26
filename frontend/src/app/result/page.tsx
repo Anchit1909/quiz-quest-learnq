@@ -17,11 +17,11 @@ const Result = () => {
 
         <div className="grid gap-4 mt-4 md:grid-cols-7">
           <ResultsCard
-            score={quizResult.totalScore}
-            totalQuestions={quizResult.scoreDetails.length}
+            score={quizResult?.totalScore}
+            totalQuestions={quizResult?.scoreDetails.length}
           />
         </div>
-        <QuestionsList questions={quizResult.scoreDetails} />
+        <QuestionsList questions={quizResult?.scoreDetails} />
         <Footer />
       </div>
     </>
