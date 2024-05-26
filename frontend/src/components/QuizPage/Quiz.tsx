@@ -31,7 +31,9 @@ interface QuizProps {
 
 const Quiz: React.FC<QuizProps> = ({ questions }) => {
   const router = useRouter();
-  const { setQuizResult } = useResultStore();
+  const { setQuizResult } = useResultStore() as {
+    setQuizResult: (result: any) => void;
+  };
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedChoice, setSelectedChoice] = useState<number | null>(null);
   const [answers, setAnswers] = useState<
@@ -104,7 +106,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
     }
   };
 
-  const currentQuestion = questions[currentQuestionIndex];
+  const currentQuestion = questions[currentQuestionIndex] as any;
 
   return (
     <div className="absolute -translate-x-1/2 -translate-y-1/2 md:w-[80vw] max-w-4xl w-[90vw] top-1/2 left-1/2">

@@ -7,7 +7,7 @@ import { useResultStore } from "@/hooks/useStore";
 import React from "react";
 
 const Result = () => {
-  const { quizResult } = useResultStore();
+  const { quizResult } = useResultStore() as any;
   return (
     <>
       <div className="p-8 mx-auto max-w-7xl">
