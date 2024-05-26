@@ -9,19 +9,13 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Check, ChevronDown, Copy } from "lucide-react";
-import { toast } from "../ui/use-toast";
+import { ChevronDown } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "../ui/dropdown-menu";
-import { DropdownMenuCheckboxItem } from "@radix-ui/react-dropdown-menu";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
