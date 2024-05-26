@@ -83,7 +83,7 @@ const Quiz: React.FC<QuizProps> = ({ questions }) => {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/quiz/submit-answers",
+        `${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/quiz/submit-answers`,
         {
           method: "POST",
           headers: {

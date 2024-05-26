@@ -7,7 +7,7 @@ const page = async ({
 }) => {
   const difficulty = searchParams?.difficulty;
   const res = await fetch(
-    `http://localhost:5000/quiz/questions?difficulty=${difficulty}`
+    `${process.env.NEXT_PUBLIC_API_BASE_ENDPOINT}/quiz/questions?difficulty=${difficulty}`
   );
   const questions = await res.json();
   return <Quiz questions={questions} />;
