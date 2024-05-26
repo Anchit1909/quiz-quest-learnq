@@ -34,7 +34,7 @@ const QuestionsList = ({ questions }: Props) => {
       </TableHeader>
       <TableBody>
         <>
-          {questions.map(
+          {questions?.map(
             (
               { question, userAnswer, correctAnswer, isCorrect, score },
               index
