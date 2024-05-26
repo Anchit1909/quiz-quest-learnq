@@ -1,5 +1,6 @@
 import React from "react";
 import { InlineMath } from "react-katex";
+import "katex/dist/katex.min.css";
 
 export const detectLatex = (text: string) => {
   const parts = text.split(/(\\\(.*?\\\))/g);
